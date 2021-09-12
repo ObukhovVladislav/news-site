@@ -1,22 +1,33 @@
-import logo from './logo.svg';
+import galaxy from './galaxy.gif';
 import './App.css';
+import ''
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div>
+      <header>
+      <nav>
+      <ul className="topmenu">
+        <li>
+            <a href="">Интернет</a>
+        </li>
+        <li>
+            <a href="">Культура</a>
+        </li>
+        <li>
+            <a href="">Общество</a>
+        </li>
+        <li>
+            <a href="">Политика</a>
+        </li>
+        <li>
+            <a href="">Спорт</a>
+        </li>
+        <li>
+            <a href="">Экономика</a>
+        </li>
+      </ul>
+    </nav>
       </header>
     </div>
   );
