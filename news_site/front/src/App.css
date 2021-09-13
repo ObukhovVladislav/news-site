@@ -42,3 +42,16 @@ nav ul {
 .topmenu li a:hover {
     color: #FFD700;
 }
+
+.container{
+    margin-top: 70px;
+
+}
+.title{
+    text-align: center;
+}
+
+.text-center{
+    background-color: #4F4FD9!important;
+    color: white;
+}
