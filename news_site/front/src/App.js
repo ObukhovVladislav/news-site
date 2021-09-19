@@ -12,7 +12,7 @@ const articles = [
 
 class App extends React.Component {
     constructor(props) {
-        super(props);  // parent constructor
+        super(props);
         this.state = {
             users: [],
             articles: [],
