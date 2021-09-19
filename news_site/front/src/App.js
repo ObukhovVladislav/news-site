@@ -1,69 +1,44 @@
-import image from './test-image.svg';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
+import React from 'react';
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import ArticleList from "./components/Article";
 
 
-function App() {
-  return (
-<>
-    <header>
-      <nav>
-        <ul className="topmenu">
-            <li>
-                <a href="">Интернет</a>
-            </li>
-            <li>
-                <a href="">Культура</a>
-            </li>
-            <li>
-                <a href="">Общество</a>
-            </li>
-            <li>
-                <a href="">Политика</a>
-            </li>
-            <li>
-                <a href="">Спорт</a>
-            </li>
-            <li>
-                <a href="">Экономика</a>
-            </li>
-        </ul>
-      </nav>
-    </header>
+const articles = [
+    {'name': "Article 1", 'date': "2000"},
+    {'name': "Article 2", 'date': "2001"},
+    {'name': "Article 3", 'date': "2002"}
+];
 
-    <div className="container">
-        <div className="row">
-            <div className="col-6">
-                <h2 className="title">Название новости</h2>
-                <img src={image} className="rounded mx-auto d-block" alt="image" />
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incididunt ut labore et dolore magna aliqua ex ea commodo consequat. </p>
-        </div>
-            <div className="col-6">
-               <h2 className="title">Название новости</h2>
-                <img src={image} className="rounded mx-auto d-block" alt="image" />
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incididunt ut labore et dolore magna aliqua.ex ea commodo consequat. </p>
+class App extends React.Component {
+    constructor(props) {
+        super(props);  // parent constructor
+        this.state = {
+            users: [],
+            articles: [],
+//            articles: articles,
+            comments: []
+        };
+    }
+
+    componentDidMount() {
+        this.setState({
+            articles: articles
+        })
+    }
+
+    render() {
+        console.log('state', this.state);
+        return (
+            <div>
+                <Header />
+                News-site
+                <ArticleList articles={this.state.articles} />
+                <Footer />
             </div>
-            <div className="col-6">
-               <h2 className="title">Название новости</h2>
-                <img src={image} className="rounded mx-auto d-block" alt="image" />
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incididunt ut labore et dolore magna aliqua.ex ea commodo consequat. </p>
-            </div>
-            <div className="col-6">
-               <h2 className="title">Название новости</h2>
-                <img src={image} className="rounded mx-auto d-block" alt="image" />
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incididunt ut labore et dolore magna aliqua.ex ea commodo consequat. </p>
-            </div>
-        </div>
-   </div>
-  <footer className="page-footer font-small blue footer">
-    <div>
-        <div className="footer-copyright text-center py-3">
-            © 2020 Copyright: все права защищенены
-        </div>
-    </div>
-  </footer>
-</>
-  );
+
+        )
+    }
 }
 
 export default App;
