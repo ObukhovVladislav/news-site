@@ -24,9 +24,11 @@ const ArticleList = (articles) => {
             </thead>
             <tbody>
             {articles.articles.map(Article)}
+
             </tbody>
         </table>
     )
 }
+
 
 export default ArticleList;
