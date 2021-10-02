@@ -19,5 +19,5 @@ class ArticleViewSet(ModelViewSet):
 
 
 class CommentViewSet(ModelViewSet):
-    queryset = Comment.objects.filter()
+    queryset = Comment.objects.all()
     serializer_class = CommentSerializer

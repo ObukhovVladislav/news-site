@@ -17,12 +17,13 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
+import authapp.views as authapp
 import mainapp.views as mainapp
-from mainapp.views import ArticleViewSet, CommentViewSet
 
 router = DefaultRouter()
-router.register('articles', ArticleViewSet)
-router.register('comments', CommentViewSet)
+router.register('users', authapp.UserViewsSet)
+router.register('articles', mainapp.ArticleViewSet)
+router.register('comments', mainapp.CommentViewSet)
 
 urlpatterns = [
     path('articles/', mainapp.ArticleList.as_view()),

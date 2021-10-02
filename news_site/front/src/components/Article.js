@@ -1,9 +1,12 @@
 const Article = (article) => {
-    console.log('article', article);
+//    console.log('article', article);
     return(
         <tr className="article-row">
             <td>
-                {article.name}
+                {article.id}
+            </td>
+            <td>
+                {article.title}
             </td>
             <td>
                 {article.date}
@@ -13,18 +16,18 @@ const Article = (article) => {
 }
 
 const ArticleList = (articles) => {
-    console.log('articles', articles);
+//    console.log('articles', articles);
     return (
         <table className={"article-list"}>
             <thead>
             <tr>
-                <th>Name</th>
-                <th>Date</th>
+                <th>id</th>
+                <th>title</th>
+                <th>date</th>
             </tr>
             </thead>
             <tbody>
             {articles.articles.map(Article)}
-
             </tbody>
         </table>
     )
