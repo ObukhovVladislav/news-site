@@ -24,7 +24,9 @@ const Comment = (comment) => {
 const CommentList = (comments) => {
 //    console.log('comments', comments);
     return (
-        <table className={"comment-list"}>
+    <div className="comment-list">
+        <h1>Comments</h1>
+        <table className="comment-list__table">
             <thead>
             <tr>
                 <th>id</th>
@@ -38,6 +40,7 @@ const CommentList = (comments) => {
             {comments.comments.map(Comment)}
             </tbody>
         </table>
+    </div>
     )
 }
 

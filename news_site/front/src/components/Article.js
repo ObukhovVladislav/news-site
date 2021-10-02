@@ -18,7 +18,9 @@ const Article = (article) => {
 const ArticleList = (articles) => {
 //    console.log('articles', articles);
     return (
-        <table className={"article-list"}>
+    <div className="article-list">
+        <h1>Articles</h1>
+        <table className="article-list__table">
             <thead>
             <tr>
                 <th>id</th>
@@ -27,9 +29,10 @@ const ArticleList = (articles) => {
             </tr>
             </thead>
             <tbody>
-            {articles.articles.map(Article)}
+                {articles.articles.map(Article)}
             </tbody>
         </table>
+    </div>
     )
 }
 

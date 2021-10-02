@@ -21,7 +21,9 @@ const User = (user) => {
 const UserList = (users) => {
 //    console.log('users', users);
     return (
-        <table className={"user-list"}>
+    <div className="users-list">
+        <h1>Users</h1>
+        <table className="user-list__table">
             <thead>
             <tr>
                 <th>id</th>
@@ -34,6 +36,7 @@ const UserList = (users) => {
             {users.users.map(User)}
             </tbody>
         </table>
+    </div>
     )
 }
 

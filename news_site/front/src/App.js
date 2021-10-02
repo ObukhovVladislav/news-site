@@ -1,4 +1,6 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
+import {BrowserRouter as Router, NavLink as Link, Route} from 'react-router-dom';
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import UserList from "./components/User";
@@ -74,7 +76,6 @@ const users = [
         "gender": "m"
     }
 ];
-
 
 const articles = [
     {
@@ -163,12 +164,42 @@ class App extends React.Component {
     render() {
         console.log('state', this.state);
         return (
-            <div>
-                <Header />
-                News-site
-                <UserList users={this.state.users} />
-                <ArticleList articles={this.state.articles} />
-                <CommentList comments={this.state.comments} />
+            <div className="main">
+                <Router>
+                    <Header />
+                    <header className="navbar navbar-expand-lg navbar navbar-dark bg-primary">
+                    <Link to={"/"}
+                            className="navbar-brand">
+                        News-site
+                    </Link>
+                        <ul className="navbar-nav">
+                            <li className="nav-item">
+                                <Link to={"/users"} className="nav-item nav-link">
+                                    Users
+                                </Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link to={"/articles"} className="nav-item nav-link">
+                                    Articles
+                                </Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link to={"/comments"} className="nav-item nav-link">
+                                    Comments
+                                </Link>
+                            </li>
+                        </ul>
+                    </header>
+                    <Route exact path="/users">
+                        <UserList users={this.state.users} />
+                    </Route>
+                    <Route exact path="/articles">
+                        <ArticleList articles={this.state.articles} />
+                    </Route>
+                    <Route exact path="/comments">
+                        <CommentList comments={this.state.comments} />
+                    </Route>
+                </Router>
                 <Footer />
             </div>
 
