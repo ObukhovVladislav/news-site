@@ -1,5 +1,4 @@
 const Article = (article) => {
-//    console.log('article', article);
     return(
         <tr className="article-row">
             <td>
