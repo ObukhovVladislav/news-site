@@ -1,7 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-import {BrowserRouter as Router, NavLink as Link, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 import Header from "./components/Header";
+import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import UserList from "./components/User";
 import ArticleList from "./components/Article";
@@ -167,29 +168,7 @@ class App extends React.Component {
             <div className="main">
                 <Router>
                     <Header />
-                    <header className="navbar navbar-expand-lg navbar navbar-dark bg-primary">
-                    <Link to={"/"}
-                            className="navbar-brand">
-                        News-site
-                    </Link>
-                        <ul className="navbar-nav">
-                            <li className="nav-item">
-                                <Link to={"/users"} className="nav-item nav-link">
-                                    Users
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link to={"/articles"} className="nav-item nav-link">
-                                    Articles
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link to={"/comments"} className="nav-item nav-link">
-                                    Comments
-                                </Link>
-                            </li>
-                        </ul>
-                    </header>
+                    <Navbar />
                     <Route exact path="/users">
                         <UserList users={this.state.users} />
                     </Route>
