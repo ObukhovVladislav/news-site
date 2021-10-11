@@ -2,7 +2,7 @@ import {Link} from 'react-router-dom';
 
 function Navbar() {
     return (
-        <header className="navbar navbar-expand-lg navbar navbar-dark bg-primary">
+        <div className="navbar navbar-expand-lg navbar navbar-dark bg-primary">
             <Link to={"/"} className="navbar-brand">
                 News-site
             </Link>
@@ -23,7 +23,7 @@ function Navbar() {
                     </Link>
                 </li>
             </ul>
-        </header>
+        </div>
 
 
     );
