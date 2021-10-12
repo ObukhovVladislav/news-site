@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import UserList from "./components/User";
 import ArticleList from "./components/Article";
+import ArticleDetail from "./components/ArticleDetail";
 import CommentList from "./components/Comment";
 
 
@@ -174,6 +175,9 @@ class App extends React.Component {
                     </Route>
                     <Route exact path="/articles">
                         <ArticleList articles={this.state.articles} />
+                    </Route>
+                    <Route exact path="/articles/detail/:id">
+                        <ArticleDetail articles={this.state.articles} />
                     </Route>
                     <Route exact path="/comments">
                         <CommentList comments={this.state.comments} />

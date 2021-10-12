@@ -1,3 +1,6 @@
+import {NavLink as Link} from "react-router-dom";
+import React from "react";
+
 const Article = (article) => {
     return(
         <tr className="article-row">
@@ -5,10 +8,17 @@ const Article = (article) => {
                 {article.id}
             </td>
             <td>
-                {article.title}
+                <Link to={`/articles/detail/${article.id}`} className="nav-item nav-link">
+                        {article.title}
+                </Link>
             </td>
             <td>
                 {article.date}
+            </td>
+            <td>
+                <Link to={`/articles/delete/${article.id}`} className="nav-item nav-link">
+                        delete
+                </Link>
             </td>
         </tr>
     )
@@ -25,6 +35,7 @@ const ArticleList = (articles) => {
                 <th>id</th>
                 <th>title</th>
                 <th>date</th>
+                <th>actions</th>
             </tr>
             </thead>
             <tbody>
