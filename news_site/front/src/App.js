@@ -8,6 +8,7 @@ import UserList from "./components/User";
 import ArticleList from "./components/Article";
 import ArticleDetail from "./components/ArticleDetail";
 import CommentList from "./components/Comment";
+import axios from "axios";
 
 
 const users = [
@@ -156,6 +157,13 @@ class App extends React.Component {
     }
 
     componentDidMount() {
+        axios
+        .get("http://localhost:8000/api/users/")
+        .then((result) => {
+            console.log('result', result);
+        })
+        .catch((error) => console.log(error));
+
         this.setState({
             users: users,
             articles: articles,
