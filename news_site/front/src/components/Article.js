@@ -16,6 +16,9 @@ const Article = (article) => {
                 {article.date}
             </td>
             <td>
+                {article.text}
+            </td>
+            <td>
                 <Link to={`/articles/delete/${article.id}`} className="nav-item nav-link">
                         delete
                 </Link>
@@ -35,6 +38,7 @@ const ArticleList = (articles) => {
                 <th>id</th>
                 <th>title</th>
                 <th>date</th>
+                <th>text</th>
                 <th>actions</th>
             </tr>
             </thead>
