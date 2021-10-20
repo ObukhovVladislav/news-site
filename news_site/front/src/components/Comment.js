@@ -1,4 +1,4 @@
-const Comment = (comment) => {
+const Comment = ({comment}) => {
 //    console.log('comment', comment);
     return(
         <tr className="article-row">
@@ -21,7 +21,7 @@ const Comment = (comment) => {
     )
 }
 
-const CommentList = (comments) => {
+const CommentList = ({comments}) => {
 //    console.log('comments', comments);
     return (
     <div className="comment-list">
@@ -37,7 +37,7 @@ const CommentList = (comments) => {
             </tr>
             </thead>
             <tbody>
-            {comments.comments.map(Comment)}
+            {comments.map((comment) => <Comment key={comment.id} comment={comment}/>)}
             </tbody>
         </table>
     </div>

@@ -1,4 +1,4 @@
-const User = (user) => {
+const User = ({user}) => {
 //    console.log('user', user);
     return(
         <tr className="user-row">
@@ -18,7 +18,7 @@ const User = (user) => {
     )
 }
 
-const UserList = (users) => {
+const UserList = ({users}) => {
 //    console.log('users', users);
     return (
     <div className="users-list">
@@ -33,7 +33,7 @@ const UserList = (users) => {
             </tr>
             </thead>
             <tbody>
-            {users.users.map(User)}
+            {users.map((user) => <User key={user.id} user={user}/>)}
             </tbody>
         </table>
     </div>

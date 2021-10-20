@@ -1,7 +1,7 @@
 import {NavLink as Link} from "react-router-dom";
 import React from "react";
 
-const Article = (article) => {
+const Article = ({article}) => {
     return(
         <tr className="article-row">
             <td>
@@ -27,7 +27,7 @@ const Article = (article) => {
     )
 }
 
-const ArticleList = (articles) => {
+const ArticleList = ({articles}) => {
 //    console.log('articles', articles);
     return (
     <div className="article-list">
@@ -43,7 +43,7 @@ const ArticleList = (articles) => {
             </tr>
             </thead>
             <tbody>
-                {articles.articles.map(Article)}
+            {articles.map((article) => <Article key={article.id} article={article}/>)}
             </tbody>
         </table>
     </div>

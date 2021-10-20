@@ -10,6 +10,9 @@ import ArticleDetail from "./components/ArticleDetail";
 import CommentList from "./components/Comment";
 import axios from "axios";
 
+const API_URL = "http://localhost:8000";
+const getResourceURL = (suffix) => `${API_URL}/api/${suffix}/`;
+
 
 class App extends React.Component {
     constructor(props) {
@@ -24,7 +27,7 @@ class App extends React.Component {
 
     componentDidMount() {
         axios
-        .get("http://localhost:8000/api/users/")
+        .get(getResourceURL("users"))
         .then((result) => {
             this.setState({
                 users: result.data
@@ -32,7 +35,7 @@ class App extends React.Component {
         })
         .catch((error) => console.log(error));
         axios
-        .get("http://localhost:8000/api/articles/")
+        .get(getResourceURL("articles"))
         .then((result) => {
             this.setState({
                 articles: result.data
@@ -40,7 +43,7 @@ class App extends React.Component {
         })
         .catch((error) => console.log(error));
         axios
-        .get("http://localhost:8000/api/comments/")
+        .get(getResourceURL("comments"))
         .then((result) => {
             this.setState({
                 comments: result.data
