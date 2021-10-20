@@ -160,12 +160,15 @@ class App extends React.Component {
         axios
         .get("http://localhost:8000/api/users/")
         .then((result) => {
-            console.log('result', result);
+//            console.log('users result:', result);
+            this.setState({
+                users: result.data
+            })
         })
         .catch((error) => console.log(error));
 
         this.setState({
-            users: users,
+//            users: users,
             articles: articles,
             comments: comments
         })
