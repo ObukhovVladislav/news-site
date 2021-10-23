@@ -21,9 +21,16 @@ class Article(models.Model):
     short_text = models.CharField(verbose_name='Короткий текст', max_length=200)
     text = models.TextField(verbose_name='Текст')
     date = models.DateTimeField(verbose_name='Дата публикации', auto_now_add=True)
+    is_active = models.BooleanField(default=True, db_index=True)
 
     def __str__(self):
         return f'{self.title}'
+
+    def delete(self, using=None, keep_parents=False):
+        self.is_active = False
+        self.title = f'_{self.title}'
+        self.save()
+        return 1, {}
 
     class Meta:
         verbose_name = 'Новость'
@@ -35,9 +42,16 @@ class Comment(models.Model):
     name = models.ManyToManyField('authapp.UserProfile', related_name='comm_author')
     text = models.CharField(verbose_name='Текст комментария', max_length=200)
     created = models.DateTimeField(default=timezone.now)
+    is_active = models.BooleanField(default=True, db_index=True)
 
     def __str__(self):
         return f'{self.article}'
+
+    def delete(self, using=None, keep_parents=False):
+        self.is_active = False
+        self.text = f'_{self.text}'
+        self.save()
+        return 1, {}
 
     class Meta:
         verbose_name = 'Комментарий'

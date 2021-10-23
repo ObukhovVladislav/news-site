@@ -14,10 +14,10 @@ class CommentList(ListView):
 
 
 class ArticleViewSet(ModelViewSet):
-    queryset = Article.objects.all()
+    queryset = Article.objects.filter(is_active=True)
     serializer_class = ArticleSerializer
 
 
 class CommentViewSet(ModelViewSet):
-    queryset = Comment.objects.all()
+    queryset = Comment.objects.filter(is_active=True)
     serializer_class = CommentSerializer
