@@ -29,19 +29,13 @@ class Article(models.Model):
     def restore(self):
         self.is_active = True
         self.title = self.title[1:]
-        comments = self.comment_set.all()
-        for comment in comments:
-            comment.is_active = True
-            comment.save()
+        self.comment_set.all().update(is_active=True)
         self.save()
         return self
 
     def delete(self, using=None, keep_parents=False):
         self.is_active = False
-        comments = self.comment_set.all()
-        for comment in comments:
-            comment.is_active = False
-            comment.save()
+        self.comment_set.all().update(is_active=False)
         self.title = f'_{self.title}'
         self.save()
         return 1, {}
