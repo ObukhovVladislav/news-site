@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models, transaction, DatabaseError
 from datetime import date
 import datetime
 from django.utils import timezone
@@ -35,9 +35,11 @@ class Article(models.Model):
 
     def delete(self, using=None, keep_parents=False):
         self.is_active = False
-        self.comment_set.all().update(is_active=False)
-        self.title = f'_{self.title}'
-        self.save()
+        with transaction.atomic() as _:
+            self.comment_set.all().update(is_active=False)
+            self.title = f'_{self.title}'
+            # raise DatabaseError
+            self.save()
         return 1, {}
 
     class Meta:
@@ -54,12 +56,6 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'{self.article}'
-
-    def delete(self, using=None, keep_parents=False):
-        self.is_active = False
-        self.text = f'_{self.text}'
-        self.save()
-        return 1, {}
 
     class Meta:
         verbose_name = 'Комментарий'
