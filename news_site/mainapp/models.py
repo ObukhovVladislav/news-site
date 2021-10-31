@@ -26,8 +26,22 @@ class Article(models.Model):
     def __str__(self):
         return f'{self.title}'
 
+    def restore(self):
+        self.is_active = True
+        self.title = self.title[1:]
+        comments = self.comment_set.all()
+        for comment in comments:
+            comment.is_active = True
+            comment.save()
+        self.save()
+        return self
+
     def delete(self, using=None, keep_parents=False):
         self.is_active = False
+        comments = self.comment_set.all()
+        for comment in comments:
+            comment.is_active = False
+            comment.save()
         self.title = f'_{self.title}'
         self.save()
         return 1, {}

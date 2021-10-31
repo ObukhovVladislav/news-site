@@ -20,7 +20,6 @@ class App extends React.Component {
         this.state = {
             users: [],
             articles: [],
-//            articles: articles,
             comments: []
         };
     }

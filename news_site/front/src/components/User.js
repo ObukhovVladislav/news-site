@@ -1,5 +1,4 @@
 const User = ({user}) => {
-//    console.log('user', user);
     return(
         <tr className="user-row">
             <td>
@@ -19,7 +18,6 @@ const User = ({user}) => {
 }
 
 const UserList = ({users}) => {
-//    console.log('users', users);
     return (
     <div className="users-list">
         <h1>Users</h1>

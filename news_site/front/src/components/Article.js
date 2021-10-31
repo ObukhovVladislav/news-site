@@ -28,7 +28,6 @@ const Article = ({article}) => {
 }
 
 const ArticleList = ({articles}) => {
-//    console.log('articles', articles);
     return (
     <div className="article-list">
         <h1>Articles</h1>
