@@ -9,17 +9,22 @@ function Navbar() {
             <ul className="navbar-nav">
                 <li className="nav-item">
                     <Link to={"/users"} className="nav-item nav-link">
-                        Users
+                        Пользователи
                     </Link>
                 </li>
                 <li className="nav-item">
                     <Link to={"/articles"} className="nav-item nav-link">
-                        Articles
+                        Статьи
                     </Link>
                 </li>
                 <li className="nav-item">
                     <Link to={"/comments"} className="nav-item nav-link">
-                        Comments
+                        Комментарии
+                    </Link>
+                </li>
+                <li className="nav-item">
+                    <Link to={"/login"} className="nav-item nav-link">
+                        Вход
                     </Link>
                 </li>
             </ul>

@@ -8,6 +8,7 @@ import UserList from "./components/User";
 import ArticleList from "./components/Article";
 import ArticleDetail from "./components/ArticleDetail";
 import CommentList from "./components/Comment";
+import LoginForm from "./components/LoginForm";
 import axios from "axios";
 
 const API_URL = "http://localhost:8000";
@@ -70,6 +71,9 @@ class App extends React.Component {
                     </Route>
                     <Route exact path="/comments">
                         <CommentList comments={this.state.comments} />
+                    </Route>
+                    <Route exact path="/login">
+                        <LoginForm />
                     </Route>
                 </Router>
                 <Footer />
