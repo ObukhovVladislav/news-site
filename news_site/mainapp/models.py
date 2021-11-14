@@ -1,7 +1,7 @@
-from django.db import models, transaction, DatabaseError
-from datetime import date
-import datetime
+from django.db import models, transaction
 from django.utils import timezone
+
+from authapp.models import UserProfile
 
 
 class Category(models.TextChoices):
@@ -38,7 +38,7 @@ class Article(models.Model):
         with transaction.atomic() as _:
             self.comment_set.all().update(is_active=False)
             self.title = f'_{self.title}'
-            # raise DatabaseError
+
             self.save()
         return 1, {}
 

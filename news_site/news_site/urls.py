@@ -29,6 +29,8 @@ urlpatterns = [
     path('articles/', mainapp.ArticleList.as_view()),
     path('articles/comments/', mainapp.CommentList.as_view()),
 
+    path('auth/login/', authapp.MyLogin.as_view(), name='login'),
+
     path('api/', include(router.urls)),
 
     path('admin/', admin.site.urls),

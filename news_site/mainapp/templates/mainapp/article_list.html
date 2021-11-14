@@ -5,8 +5,17 @@
     <title>Articles</title>
 </head>
 <body>
-{% for article in object_list %}
-    {{ article }}
-{% endfor %}
+<div class="user">
+    {% if user.is_authenticated %}
+        {{ user.username }}
+    {% else %}
+        <a href="{% url 'login' %}">Вход</a>
+    {% endif %}
+</div>
+<div>
+    {% for article in object_list %}
+        {{ article }}
+    {% endfor %}
+</div>
 </body>
 </html>
