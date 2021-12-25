@@ -21,7 +21,8 @@ class App extends React.Component {
         this.state = {
             users: [],
             articles: [],
-            comments: []
+            comments: [],
+            accessToken: undefined,
         };
     }
 
@@ -53,6 +54,30 @@ class App extends React.Component {
 
     }
 
+    login(username, password){
+        console.log('do login', username, password);
+        axios
+        .post(getResourceURL("token"),
+            {"username": username, "password": password})
+        .then((result) => {
+            let refreshToken = result.data.refresh;
+            let accessToken = result.data.access;
+            this.saveTokens(refreshToken, accessToken)
+            this.setState({accessToken: accessToken}, this.saveTokens)
+        })
+        .catch((error) => console.log(error));
+    }
+
+    saveTokens(refreshToken, accessToken) {
+        localStorage.setItem('refreshToken', refreshToken);
+        localStorage.setItem('accessToken', accessToken);
+        console.log('login result:', localStorage.getItem('accessToken'));
+    }
+
+    getHeaders() {
+
+    }
+
     render() {
         console.log('state', this.state);
         return (
@@ -73,7 +98,7 @@ class App extends React.Component {
                         <CommentList comments={this.state.comments} />
                     </Route>
                     <Route exact path="/login">
-                        <LoginForm />
+                        <LoginForm login={(username, password) => this.login(username, password)} />
                     </Route>
                 </Router>
                 <Footer />
