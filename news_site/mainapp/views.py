@@ -1,4 +1,5 @@
 from django.views.generic import ListView
+from rest_framework.permissions import AllowAny
 from mainapp.serializers import ArticleSerializer, CommentSerializer
 from rest_framework.viewsets import ModelViewSet
 
@@ -14,6 +15,7 @@ class CommentList(ListView):
 
 
 class ArticleViewSet(ModelViewSet):
+    permission_classes = [AllowAny]
     queryset = Article.objects.filter(is_active=True)
     serializer_class = ArticleSerializer
 

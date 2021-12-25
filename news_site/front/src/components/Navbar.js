@@ -1,6 +1,15 @@
-import {Link} from 'react-router-dom';
+import {NavLink, Link} from 'react-router-dom';
+import React from "react";
 
-function Navbar() {
+function Navbar(isAuthenticated, logout) {
+    let loginLink, loginTitle, loginHandler;
+    loginLink = "/login";
+    loginTitle = "Вход";
+    if (isAuthenticated) {
+        loginLink = "/logout";
+        loginTitle = "Выход";
+        loginHandler = logout;
+    }
     return (
         <header className="navbar navbar-expand-lg navbar navbar-dark bg-primary">
             <Link to={"/"} className="navbar-brand">
@@ -23,8 +32,8 @@ function Navbar() {
                     </Link>
                 </li>
                 <li className="nav-item">
-                    <Link to={"/login"} className="nav-item nav-link">
-                        Вход
+                    <Link to={loginLink} className="nav-link" onClick={loginHandler}>
+                        {loginTitle}
                     </Link>
                 </li>
             </ul>

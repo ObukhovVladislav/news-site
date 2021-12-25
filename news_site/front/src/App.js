@@ -22,60 +22,92 @@ class App extends React.Component {
             users: [],
             articles: [],
             comments: [],
-            accessToken: undefined,
+            accessToken: this.getAccessToken(),
         };
     }
-
     componentDidMount() {
+        this.loadState()
+    }
+    loadState(){
+        let headers = this.getHeaders();
         axios
-        .get(getResourceURL("users"))
-        .then((result) => {
-            this.setState({
-                users: result.data
+            .get(getResourceURL("users"), {headers: headers})
+            .then((result) => {
+                this.setState({
+                    users: result.data
+                })
             })
-        })
-        .catch((error) => console.log(error));
+            .catch((error) => console.log(error));
         axios
-        .get(getResourceURL("articles"))
-        .then((result) => {
-            this.setState({
-                articles: result.data
+            .get(getResourceURL("articles"), {headers: headers})
+            .then((result) => {
+                this.setState({
+                    articles: result.data
+                })
             })
-        })
-        .catch((error) => console.log(error));
+            .catch((error) => console.log(error));
         axios
-        .get(getResourceURL("comments"))
-        .then((result) => {
-            this.setState({
-                comments: result.data
+            .get(getResourceURL("comments"), {headers: headers})
+            .then((result) => {
+                this.setState({
+                    comments: result.data
+                })
             })
-        })
-        .catch((error) => console.log(error));
-
+            .catch((error) => console.log(error));
     }
 
-    login(username, password){
-        console.log('do login', username, password);
+    login(username, password) {
         axios
-        .post(getResourceURL("token"),
-            {"username": username, "password": password})
-        .then((result) => {
-            let refreshToken = result.data.refresh;
-            let accessToken = result.data.access;
-            this.saveTokens(refreshToken, accessToken)
-            this.setState({accessToken: accessToken}, this.saveTokens)
+            .post(getResourceURL("token"),
+                {"username": username, "password": password})
+            .then((result) => {
+                let refreshToken = result.data.refresh;
+                let accessToken = result.data.access;
+                console.log(accessToken)
+
+                this.saveTokens(refreshToken, accessToken)
+                this.setState({accessToken: accessToken}, this.loadState)
+            })
+            .catch((error) => console.log(error));
+    }
+
+    logout() {
+        localStorage.setItem('refreshToken', null);
+        localStorage.setItem('accessToken', null);
+        this.clearState();
+    }
+
+    clearState() {
+        this.setState({
+            accessToken: null,
+            users: [],
+            articles: [],
+            comments: [],
         })
-        .catch((error) => console.log(error));
     }
 
     saveTokens(refreshToken, accessToken) {
         localStorage.setItem('refreshToken', refreshToken);
         localStorage.setItem('accessToken', accessToken);
-        console.log('login result:', localStorage.getItem('accessToken'));
+    }
+
+    getAccessToken(){
+        return localStorage.getItem('accessToken')
+    }
+
+    isAuthenticated() {
+        return this.state.accessToken !== 'null' && this.state.accessToken !== null;
     }
 
     getHeaders() {
+        let headers = {
+            'Content-Type': "application/json"
+        }
+        if (this.isAuthenticated()) {
+            headers['Authorization'] = `Bearer ${this.state.accessToken}`
+        }
 
+        return headers;
     }
 
     render() {
@@ -83,7 +115,8 @@ class App extends React.Component {
         return (
             <div className="main">
                 <Router>
-                    <Header />
+                   <Header isAuthenticated={this.isAuthenticated()}
+                            logout={() => this.logout()}/>
                     <Navbar />
                     <Route exact path="/users">
                         <UserList users={this.state.users} />
@@ -98,7 +131,8 @@ class App extends React.Component {
                         <CommentList comments={this.state.comments} />
                     </Route>
                     <Route exact path="/login">
-                        <LoginForm login={(username, password) => this.login(username, password)} />
+                        <LoginForm
+                            login={(username, password) => this.login(username, password)}/>
                     </Route>
                 </Router>
                 <Footer />
