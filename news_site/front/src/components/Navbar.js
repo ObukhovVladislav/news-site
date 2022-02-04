@@ -1,13 +1,13 @@
 import {NavLink, Link} from 'react-router-dom';
 import React from "react";
 
-function Navbar(isAuthenticated, logout) {
+function Navbar({isAuthenticated, logout}) {
     let loginLink, loginTitle, loginHandler;
     loginLink = "/login";
-    loginTitle = "Вход";
+    loginTitle = "login";
     if (isAuthenticated) {
         loginLink = "/logout";
-        loginTitle = "Выход";
+        loginTitle = "logout";
         loginHandler = logout;
     }
     return (
