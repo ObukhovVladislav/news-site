@@ -1,9 +1,17 @@
 version: '3.2'
 
 services:
+  db:
+    image: postgres:13.1
+    privileged: true
+    env_file:
+      - .db.env
+
   backend:
     build:
       context: ./backend
+    depends_on:
+      - db
     expose:
       - 8080
     command: bash -c " python manage.py makemigrations && python manage.py migrate && gunicorn news_site.wsgi -b 0.0.0.0:8080 "
