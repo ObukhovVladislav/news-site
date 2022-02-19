@@ -5,7 +5,7 @@ services:
     image: postgres:13.1
     privileged: true
     env_file:
-      - .db.env
+      - .db-postgres.env
 
   backend:
     build:
