@@ -17,8 +17,6 @@ services:
     command: bash -c "
       python manage.py makemigrations &&
       python manage.py migrate &&
-      python manage.py create_users &&
-      python manage.py create_articles &&
       gunicorn news_site.wsgi -b 0.0.0.0:8080
       "
 
@@ -26,7 +24,7 @@ services:
     build:
       context: ./nginx
     ports:
-      - 8000:80
+      - 8001:80
     depends_on:
       - backend
 
