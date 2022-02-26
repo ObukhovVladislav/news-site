@@ -13,18 +13,18 @@ services:
     depends_on:
       - db
     expose:
-      - 8080
+      - 8081
     command: bash -c "
       python manage.py makemigrations &&
       python manage.py migrate &&
-      gunicorn news_site.wsgi -b 0.0.0.0:8080
+      gunicorn news_site.wsgi -b 0.0.0.0:8081
       "
 
   nginx:
     build:
       context: ./nginx
     ports:
-      - 8001:80
+      - 8000:80
     depends_on:
       - backend
 

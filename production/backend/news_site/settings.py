@@ -144,8 +144,8 @@ AUTH_USER_MODEL = 'authapp.UserProfile'
 LOGIN_REDIRECT_URL = '/articles'
 
 CORS_ALLOWED_ORIGINS = [
-    'http://127.0.0.1:8001',
-    'http://localhost:8001',
+    'http://127.0.0.1:8000',
+    'http://localhost:8000',
 ]
 
 REST_FRAMEWORK = {
