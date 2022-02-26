@@ -14,7 +14,13 @@ services:
       - db
     expose:
       - 8080
-    command: bash -c " python manage.py makemigrations && python manage.py migrate && gunicorn news_site.wsgi -b 0.0.0.0:8080 "
+    command: bash -c "
+      python manage.py makemigrations &&
+      python manage.py migrate &&
+      python manage.py create_users &&
+      python manage.py create_articles &&
+      gunicorn news_site.wsgi -b 0.0.0.0:8080
+      "
 
   nginx:
     build:
